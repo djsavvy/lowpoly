@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
+	"github.com/djsavvy/lowpoly/blur"
 	"image"
 	_ "image/gif"
 	_ "image/jpeg"
-	_ "image/png"
+	"image/png"
 	"log"
 	"os"
 )
@@ -24,5 +24,14 @@ func main() {
 		log.Fatal(err)
 	}
 
-	//TODO: implement gaussian filter (or approximation of it)
+	blurredImage, err := GaussianBlur(&inputImage, 1.4, true)
+	blurredOutputFile, err := os.Create(inputImageFilename + " blurred.png")
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = png.Encode(blurredOutputFile, blurredImage)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 }
