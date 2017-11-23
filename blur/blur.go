@@ -74,6 +74,15 @@ func exactGaussianBlur(input *image.Image, sigma float64) *image.RGBA {
 			}
 
 			for i := range convR {
+				if convR[i] > 255 {
+					convR[i] = 255
+				}
+				if convG[i] > 255 {
+					convG[i] = 255
+				}
+				if convB[i] > 255 {
+					convB[i] = 255
+				}
 				processedRowsOnly.SetRGBA(xMin+i, y,
 					color.RGBA{
 						R: uint8(convR[i]),
@@ -124,10 +133,19 @@ func exactGaussianBlur(input *image.Image, sigma float64) *image.RGBA {
 			}
 
 			for i := range convR {
+				if convR[i] > 255 {
+					convR[i] = 255
+				}
+				if convG[i] > 255 {
+					convG[i] = 255
+				}
+				if convB[i] > 255 {
+					convB[i] = 255
+				}
 				processedRowsCols.SetRGBA(x, yMin+i,
 					color.RGBA{
 						R: uint8(convR[i]),
-						G: uint8(convR[i]),
+						G: uint8(convG[i]),
 						B: uint8(convB[i]),
 						A: uint8(255),
 					})
