@@ -24,7 +24,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	blurredImage, err := GaussianBlur(&inputImage, 1.4, true)
+	blurredImage, err := blur.GaussianBlur(&inputImage, 1.4, true)
 	blurredOutputFile, err := os.Create(inputImageFilename + " blurred.png")
 	if err != nil {
 		log.Fatal(err)
