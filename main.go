@@ -12,29 +12,31 @@ import (
 
 func main() {
 
-	inputImageFilename := os.Args[1]
-	reader, err := os.Open(inputImageFilename)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer reader.Close()
+	for _, inputImageFilename := range os.Args[1:] {
 
-	inputImage, _, err := image.Decode(reader)
-	if err != nil {
-		log.Fatal(err)
-	}
+		reader, err := os.Open(inputImageFilename)
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer reader.Close()
 
-	blurredImage, err := blur.GaussianBlur(&inputImage, 1.4, true)
-	if err != nil {
-		log.Fatal(err)
-	}
-	blurredOutputFile, err := os.Create(inputImageFilename + " blurred.png")
-	if err != nil {
-		log.Fatal(err)
-	}
-	err = png.Encode(blurredOutputFile, blurredImage)
-	if err != nil {
-		log.Fatal(err)
-	}
+		inputImage, _, err := image.Decode(reader)
+		if err != nil {
+			log.Fatal(err)
+		}
 
+		blurredImage, err := blur.GaussianBlur(&inputImage, 1.4, true)
+		if err != nil {
+			log.Fatal(err)
+		}
+		blurredOutputFile, err := os.Create(inputImageFilename + " blurred.png")
+		if err != nil {
+			log.Fatal(err)
+		}
+		err = png.Encode(blurredOutputFile, blurredImage)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+	}
 }
