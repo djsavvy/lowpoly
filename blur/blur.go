@@ -52,15 +52,15 @@ func exactGaussianBlur(input *image.Image, sigma float64) *image.RGBA {
 			for x := xMin; x < xMax; x++ {
 				for i := 0; i <= kernelRadius; i++ {
 					inputPixelR, inputPixelG, inputPixelB, _ := (*input).At(x+i, y).RGBA()
-					convR[x-xMin] += float64(inputPixelR) * kernel[i]
-					convG[x-xMin] += float64(inputPixelG) * kernel[i]
-					convB[x-xMin] += float64(inputPixelB) * kernel[i]
+					convR[x-xMin] += float64(inputPixelR/255) * kernel[i]
+					convG[x-xMin] += float64(inputPixelG/255) * kernel[i]
+					convB[x-xMin] += float64(inputPixelB/255) * kernel[i]
 				}
 				for i := 1; i <= kernelRadius; i++ {
 					inputPixelR, inputPixelG, inputPixelB, _ := (*input).At(x-i, y).RGBA()
-					convR[x-xMin] += float64(inputPixelR) * kernel[i]
-					convG[x-xMin] += float64(inputPixelG) * kernel[i]
-					convB[x-xMin] += float64(inputPixelB) * kernel[i]
+					convR[x-xMin] += float64(inputPixelR/255) * kernel[i]
+					convG[x-xMin] += float64(inputPixelG/255) * kernel[i]
+					convB[x-xMin] += float64(inputPixelB/255) * kernel[i]
 				}
 			}
 
@@ -102,15 +102,15 @@ func exactGaussianBlur(input *image.Image, sigma float64) *image.RGBA {
 			for y := yMin; y < yMax; y++ {
 				for i := 0; i <= kernelRadius; i++ {
 					inputPixelR, inputPixelG, inputPixelB, _ := (*processedRowsOnly).At(x, y+i).RGBA()
-					convR[y-yMin] += float64(inputPixelR) * kernel[i]
-					convG[y-yMin] += float64(inputPixelG) * kernel[i]
-					convB[y-yMin] += float64(inputPixelB) * kernel[i]
+					convR[y-yMin] += float64(inputPixelR/255) * kernel[i]
+					convG[y-yMin] += float64(inputPixelG/255) * kernel[i]
+					convB[y-yMin] += float64(inputPixelB/255) * kernel[i]
 				}
 				for i := 1; i <= kernelRadius; i++ {
 					inputPixelR, inputPixelG, inputPixelB, _ := (*processedRowsOnly).At(x, y-i).RGBA()
-					convR[y-yMin] += float64(inputPixelR) * kernel[i]
-					convG[y-yMin] += float64(inputPixelG) * kernel[i]
-					convB[y-yMin] += float64(inputPixelB) * kernel[i]
+					convR[y-yMin] += float64(inputPixelR/255) * kernel[i]
+					convG[y-yMin] += float64(inputPixelG/255) * kernel[i]
+					convB[y-yMin] += float64(inputPixelB/255) * kernel[i]
 				}
 			}
 
