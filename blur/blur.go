@@ -2,7 +2,6 @@ package blur
 
 import (
 	"errors"
-	"fmt"
 	"image"
 	"image/color"
 	"math"
@@ -86,7 +85,6 @@ func exactGaussianBlur(input *image.Image, sigma float64) *image.RGBA {
 		}(y)
 	}
 	rowsWG.Wait()
-	fmt.Println(processedRowsOnly)
 
 	var colsWG sync.WaitGroup
 	processedRowsCols := image.NewRGBA(bounds)
