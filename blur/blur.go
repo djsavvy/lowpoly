@@ -27,6 +27,7 @@ func GaussianBlur(input *image.Image, sigma float64, isExact bool) (*image.RGBA,
 	return approxGaussianBlur(input, sigma), nil
 }
 
+//TODO: fix the edges
 func exactGaussianBlur(input *image.Image, sigma float64) *image.RGBA {
 	kernelRadius := int(math.Ceil(3 * sigma))
 	kernel := *calculateOneDimGaussianKernel(kernelRadius, sigma)
