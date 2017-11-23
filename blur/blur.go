@@ -2,7 +2,6 @@ package blur
 
 import (
 	"errors"
-	"fmt"
 	"image"
 	"image/color"
 	"math"
@@ -31,7 +30,6 @@ func GaussianBlur(input *image.Image, sigma float64, isExact bool) (*image.RGBA,
 func exactGaussianBlur(input *image.Image, sigma float64) *image.RGBA {
 	kernelRadius := int(math.Ceil(3 * sigma))
 	kernel := *calculateOneDimGaussianKernel(kernelRadius, sigma)
-	fmt.Println(kernel)
 	bounds := (*input).Bounds()
 	xMin := bounds.Min.X
 	xMax := bounds.Max.X
