@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"image"
 	_ "image/gif"
@@ -13,7 +12,7 @@ import (
 
 func main() {
 
-	inputImageFilename := flag.Arg(0)
+	inputImageFilename := os.Args[1]
 	reader, err := os.Open(inputImageFilename)
 	if err != nil {
 		log.Fatal(err)
@@ -24,8 +23,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Println(inputImage)
 
 	//TODO: implement gaussian filter (or approximation of it)
 }
