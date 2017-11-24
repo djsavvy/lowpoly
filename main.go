@@ -25,7 +25,7 @@ func main() {
 			log.Fatal(err)
 		}
 
-		blurredImage, err := blur.GaussianBlur(&inputImage, 1.4, true)
+		blurredImage, err := blur.GaussianBlur(&inputImage, 15, true)
 		if err != nil {
 			log.Fatal(err)
 		}

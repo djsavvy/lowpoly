@@ -27,7 +27,6 @@ func GaussianBlur(input *image.Image, sigma float64, isExact bool) (*image.RGBA,
 	return approxGaussianBlur(input, sigma), nil
 }
 
-//TODO: fix the edges
 func exactGaussianBlur(input *image.Image, sigma float64) *image.RGBA {
 	kernelRadius := int(math.Ceil(3 * sigma))
 	kernel := *calculateOneDimGaussianKernel(kernelRadius, sigma)
@@ -61,17 +60,6 @@ func exactGaussianBlur(input *image.Image, sigma float64) *image.RGBA {
 					convG[x-xMin] += float64(inputPixelG/255) * kernel[i]
 					convB[x-xMin] += float64(inputPixelB/255) * kernel[i]
 				}
-			}
-
-			borderScaleFactor := float64(1)
-			for i := 0; i < kernelRadius; i++ {
-				borderScaleFactor -= kernel[kernelRadius-i]
-				convR[xMin+kernelRadius-i] /= borderScaleFactor
-				convG[xMin+kernelRadius-i] /= borderScaleFactor
-				convB[xMin+kernelRadius-i] /= borderScaleFactor
-				convR[xMax-kernelRadius-1+i] /= borderScaleFactor
-				convG[xMax-kernelRadius-1+i] /= borderScaleFactor
-				convB[xMax-kernelRadius-1+i] /= borderScaleFactor
 			}
 
 			for i := range convR {
@@ -122,17 +110,6 @@ func exactGaussianBlur(input *image.Image, sigma float64) *image.RGBA {
 				}
 			}
 
-			borderScaleFactor := float64(1)
-			for i := 0; i < kernelRadius; i++ {
-				borderScaleFactor -= kernel[kernelRadius-i]
-				convR[yMin+kernelRadius-i] /= borderScaleFactor
-				convG[yMin+kernelRadius-i] /= borderScaleFactor
-				convB[yMin+kernelRadius-i] /= borderScaleFactor
-				convR[yMax-kernelRadius-1+i] /= borderScaleFactor
-				convG[yMax-kernelRadius-1+i] /= borderScaleFactor
-				convB[yMax-kernelRadius-1+i] /= borderScaleFactor
-			}
-
 			for i := range convR {
 				if convR[i] > 255 {
 					convR[i] = 255
@@ -176,5 +153,5 @@ func calculateOneDimGaussianKernel(kernelRadius int, sigma float64) *[]float64 {
 }
 
 func approxGaussianBlur(input *image.Image, sigma float64) *image.RGBA {
-	return nil
+	log.fatal("approxGaussianBlur is not yet implemented.")
 }
