@@ -18,30 +18,6 @@ func triangleAverage(input *image.Image, A *image.Point, B *image.Point, C *imag
 
 }
 
-// to sort the points of the triangle
-type byYthenX []*image.Point
-
-func (a byYthenX) Len() int {
-	return len(a)
-}
-
-func (a byYthenX) Swap(i, j int) {
-	a[i], a[j] = a[j], a[i]
-}
-
-func (a byYthenX) Less(i, j int) bool {
-	if a[i].Y < a[j].Y {
-		return true
-	} else if a[i].Y > a[j].Y {
-		return false
-	} else {
-		return a[i].X < a[j].X
-	}
-}
-
 func loopOverTriangle(input *image.Image, A *image.Point, B *image.Point, C *image.Point, fn func(*image.Point) (uint64, uint64, uint64)) {
-	//first order the points
-	vertices := []*image.Point{A, B, C}
-	sort.Sort(byYthenX(vertices))
 
 }
