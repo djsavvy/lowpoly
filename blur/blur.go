@@ -24,7 +24,9 @@ func GaussianBlur(input *image.Image, sigma float64, isExact bool) (*image.RGBA,
 	if isExact {
 		return exactGaussianBlur(input, sigma), nil
 	}
-	return approxGaussianBlur(input, sigma), nil
+
+	return nil, errors.New("approxGaussianBlur has not been implemented yet")
+
 }
 
 func exactGaussianBlur(input *image.Image, sigma float64) *image.RGBA {
