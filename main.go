@@ -31,6 +31,7 @@ func main() {
 
 		averageTester(&inputImage, inputImageFilename)
 	}
+
 }
 
 func blurTester(inputImage *image.Image, inputImageFilename string) {

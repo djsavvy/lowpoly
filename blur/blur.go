@@ -4,6 +4,7 @@ import (
 	"errors"
 	"image"
 	"image/color"
+	"log"
 	"math"
 	"sync"
 )
@@ -155,5 +156,6 @@ func calculateOneDimGaussianKernel(kernelRadius int, sigma float64) *[]float64 {
 }
 
 func approxGaussianBlur(input *image.Image, sigma float64) *image.RGBA {
-	log.fatal("approxGaussianBlur is not yet implemented.")
+	log.Fatal("approxGaussianBlur is not yet implemented.")
+	return nil
 }
